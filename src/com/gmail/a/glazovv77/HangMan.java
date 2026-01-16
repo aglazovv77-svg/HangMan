@@ -1,7 +1,6 @@
 package com.gmail.a.glazovv77;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,11 +8,92 @@ import java.util.List;
 import java.util.Random;
 
 public class HangMan {
-    public static List<String> readWords() throws IOException {
-        String inputFile = "words.txt";
 
-        File file = new File("C:\\Users\\aglaz\\eclipse-workspace\\HangMan1\\words.txt");
-        System.out.println(file.getCanonicalPath());
+    public static final String[] HANGMAN_STAGES = {
+
+            """
+
+
+
+
+
+					=========
+					""",
+
+            """
+					   |
+					   |
+					   |
+					   |
+					   |
+					=========
+					""",
+
+            """
+					   +---+
+					   |   |
+					   |
+					   |
+					   |
+					=========
+					""",
+
+            """
+					   +---+
+					   |   |
+					   |   O
+					   |
+					   |
+					=========
+					""",
+
+            """
+					   +---+
+					   |   |
+					   |   O
+					   |   |
+					   |
+					=========
+					""",
+
+            """
+					   +---+
+					   |   |
+					   |   O
+					   |  /|
+					   |
+					=========
+					""",
+
+            """
+					   +---+
+					   |   |
+					   |   O
+					   |  /|\\
+					   |
+					=========
+					""",
+
+            """
+					   +---+
+					   |   |
+					   |   O
+					   |  /|\\
+					   |  /
+					=========
+					""",
+
+            """
+					   +---+
+					   |   |
+					   |   O
+					   |  /|\\
+					   |  / \\
+					=========
+					""" };
+
+    public static List<String> readWords()  {
+        String inputFile = "words.txt";
 
         List<String> words = new ArrayList<>();
 
@@ -42,9 +122,8 @@ public class HangMan {
 
     public static String getRandomWord(List<String> words) {
         Random random = new Random();
-        String randomWord = words.get(random.nextInt(words.size())).toUpperCase();
-
-        // System.out.println("Загаданное слово: " + randomWord); // для отладки
+        int indexWord = random.nextInt(words.size());
+        String randomWord = words.get(indexWord).toUpperCase();
 
         return randomWord;
     }
@@ -64,103 +143,11 @@ public class HangMan {
         errors.add(letter);
         attemptCount--;
 
-        System.out.println(STAGESHANGMAN[stageIndex[0]]);
+        System.out.println(HANGMAN_STAGES[stageIndex[0]]);
 
         System.out.println("Неверно! Ошибки: " + errors);
         stageIndex[0]++;
 
         return attemptCount;
     }
-
-    public static final String[] STAGESHANGMAN = {
-
-            // 0 — основание
-            """
-
-
-
-
-
-					=========
-					""",
-
-            // 1 — вертикальная стойка
-            """
-					   |
-					   |
-					   |
-					   |
-					   |
-					=========
-					""",
-
-            // 2 — горизонтальная балка + верёвка
-            """
-					   +---+
-					   |   |
-					   |
-					   |
-					   |
-					=========
-					""",
-
-            // 3 — голова
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |
-					   |
-					=========
-					""",
-
-            // 4 — туловище
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |   |
-					   |
-					=========
-					""",
-
-            // 5 — левая рука
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |  /|
-					   |
-					=========
-					""",
-
-            // 6 — правая рука
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |  /|\\
-					   |
-					=========
-					""",
-
-            // 7 — левая нога
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |  /|\\
-					   |  /
-					=========
-					""",
-
-            // 8 — правая нога (финал)
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |  /|\\
-					   |  / \\
-					=========
-					""" };
 }

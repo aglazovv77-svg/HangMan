@@ -1,18 +1,18 @@
 import static com.gmail.a.glazovv77.HangMan.*;
 
-void main() throws IOException {
+void main() {
     List<String> words = readWords();
 
     try (Scanner sc = new Scanner(System.in)) {
         while (true) {
 
-            int attemptCount = STAGESHANGMAN.length;
+            int attemptCount = HANGMAN_STAGES.length;
 
             System.out.println("-----------------------------------");
-            System.out.printf("Игра ВИСЕЛИЦА \nPush [N]ew game or [E]xit\n");
+            System.out.println("Игра ВИСЕЛИЦА \nPush [N]ew game or [E]xit\n");
             System.out.println("-----------------------------------");
 
-            String s = "";
+            String s;
             do {
                 s = sc.nextLine().toUpperCase();
                 if (s.equals("E")) {
