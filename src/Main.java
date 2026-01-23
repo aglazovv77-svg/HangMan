@@ -1,4 +1,3 @@
-//import com.gmail.a.glazovv77.HangMan.*;
 import static com.gmail.a.glazovv77.HangMan.*;
 import static com.gmail.a.glazovv77.Renderer.HANGMAN_STAGES;
 

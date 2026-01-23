@@ -1,5 +1,7 @@
 package com.gmail.a.glazovv77;
 
+import static com.gmail.a.glazovv77.Renderer.render;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
-
-import static com.gmail.a.glazovv77.Renderer.HANGMAN_STAGES;
-import static com.gmail.a.glazovv77.Renderer.render;
 
 public class HangMan {
 
@@ -30,7 +29,7 @@ public class HangMan {
             while ((line = reader.readLine()) != null) {
                 String[] lineWords = line.split("\\s+");
                 for (String word : lineWords) {
-                    if (!word.matches("[А-Яа-яЁё]+")) {
+                    if (!word.matches(REGEX)) {
                         continue;
                     }
                     words.add(word);
