@@ -74,7 +74,7 @@ public class HangMan {
         render(0);
 
         System.out.println("Неверно! Ошибки: " + errors);
-        stageIndex++;
+        ++stageIndex;
 
         return attemptCount;
     }
