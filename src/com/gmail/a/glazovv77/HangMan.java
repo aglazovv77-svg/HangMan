@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
 
+import static com.gmail.a.glazovv77.Renderer.HANGMAN_STAGES;
+import static com.gmail.a.glazovv77.Renderer.render;
+
 public class HangMan {
 
     public final static String START = "N";
@@ -15,89 +18,6 @@ public class HangMan {
     public final static String REPEAT = "Y";
     public static final String REGEX = "[А-Яа-яЁё]";
     public static final Pattern PATTERN = Pattern.compile(REGEX);
-
-    public static final String[] HANGMAN_STAGES = {
-
-            """
-
-
-
-
-
-					=========
-					""",
-
-            """
-					   |
-					   |
-					   |
-					   |
-					   |
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |
-					   |
-					   |
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |
-					   |
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |   |
-					   |
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |  /|
-					   |
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |  /|\\
-					   |
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |  /|\\
-					   |  /
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |  /|\\
-					   |  / \\
-					=========
-					""" };
 
     public static List<String> readWords()  {
         String inputFile = "words.txt";
@@ -148,14 +68,14 @@ public class HangMan {
         return found;
     }
 
-    public static int processError(List<Character> errors, char letter, int attemptCount, int[] stageIndexes) {
+    public static int processError(List<Character> errors, char letter, int attemptCount, int stageIndex) {
         errors.add(letter);
         attemptCount--;
 
-        System.out.println(HANGMAN_STAGES[stageIndexes[0]]);
+        render(0);
 
         System.out.println("Неверно! Ошибки: " + errors);
-        stageIndexes[0]++;
+        stageIndex++;
 
         return attemptCount;
     }

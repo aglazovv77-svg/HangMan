@@ -1,5 +1,6 @@
 //import com.gmail.a.glazovv77.HangMan.*;
 import static com.gmail.a.glazovv77.HangMan.*;
+import static com.gmail.a.glazovv77.Renderer.HANGMAN_STAGES;
 
 void main() {
     List<String> words = readWords();
@@ -31,7 +32,7 @@ void main() {
             System.out.printf("У вас %d попыток отгадать слово \n", attemptCount);
 
             List<Character> errors = new ArrayList<>();
-            int[] stageIndexes = { 0 };
+            int stageIndex = 0;
 
             while (attemptCount > 0 && new String(masked).contains("*")) {
                 System.out.println("Введите букву: ");
@@ -56,7 +57,7 @@ void main() {
 
                 if (!found) {
 
-                    attemptCount = processError(errors, letter, attemptCount, stageIndexes);
+                    attemptCount = processError(errors, letter, attemptCount, stageIndex);
                     System.out.printf("Текущее слово: %s \n", String.valueOf(masked));
 
                     if (attemptCount == 0)

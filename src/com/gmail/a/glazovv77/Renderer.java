@@ -86,8 +86,7 @@ public class Renderer {
 					""" };
 
     public static void render(int stageIndex) {
-        stageIndex = 0;
-        //HANGMAN_STAGES[stageIndex] = HANGMAN_STAGES[stageIndex];
+        HANGMAN_STAGES[stageIndex] = "";
         System.out.println(HANGMAN_STAGES[stageIndex]);
     }
 
