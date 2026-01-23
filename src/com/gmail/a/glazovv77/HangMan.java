@@ -29,7 +29,7 @@ public class HangMan {
             while ((line = reader.readLine()) != null) {
                 String[] lineWords = line.split("\\s+");
                 for (String word : lineWords) {
-                    if (!word.matches(REGEX)) {
+                    if (!word.matches("[А-Яа-яЁё]+")) {
                         continue;
                     }
                     words.add(word);
@@ -71,7 +71,7 @@ public class HangMan {
         errors.add(letter);
         attemptCount--;
 
-        render(0);
+        render(stageIndex);
 
         System.out.println("Неверно! Ошибки: " + errors);
         ++stageIndex;
