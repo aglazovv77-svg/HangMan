@@ -1,5 +1,7 @@
 package com.gmail.a.glazovv77;
 
+import static com.gmail.a.glazovv77.Renderer.render;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,89 +18,6 @@ public class HangMan {
     public static final String REGEX = "[А-Яа-яЁё]";
     public static final Pattern PATTERN = Pattern.compile(REGEX);
 
-    public static final String[] HANGMAN_STAGES = {
-
-            """
-
-
-
-
-
-					=========
-					""",
-
-            """
-					   |
-					   |
-					   |
-					   |
-					   |
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |
-					   |
-					   |
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |
-					   |
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |   |
-					   |
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |  /|
-					   |
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |  /|\\
-					   |
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |  /|\\
-					   |  /
-					=========
-					""",
-
-            """
-					   +---+
-					   |   |
-					   |   O
-					   |  /|\\
-					   |  / \\
-					=========
-					""" };
-
     public static List<String> readWords()  {
         String inputFile = "words.txt";
 
@@ -110,7 +29,7 @@ public class HangMan {
             while ((line = reader.readLine()) != null) {
                 String[] lineWords = line.split("\\s+");
                 for (String word : lineWords) {
-                    if (!word.matches("[А-Яа-яЁё]+")) {
+                    if (!word.matches(REGEX)) {
                         continue;
                     }
                     words.add(word);
@@ -148,14 +67,14 @@ public class HangMan {
         return found;
     }
 
-    public static int processError(List<Character> errors, char letter, int attemptCount, int[] stageIndexes) {
+    public static int processError(List<Character> errors, char letter, int attemptCount, int stageIndex) {
         errors.add(letter);
         attemptCount--;
 
-        System.out.println(HANGMAN_STAGES[stageIndexes[0]]);
+        render(0);
 
         System.out.println("Неверно! Ошибки: " + errors);
-        stageIndexes[0]++;
+        stageIndex++;
 
         return attemptCount;
     }
