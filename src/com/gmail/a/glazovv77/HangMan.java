@@ -6,8 +6,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 public class HangMan {
+
+    public final static String START = "N";
+    public final static String QUIT = "E";
+    public final static String REPEAT = "Y";
+    public static final String REGEX = "[А-Яа-яЁё]";
+    public static final Pattern PATTERN = Pattern.compile(REGEX);
 
     public static final String[] HANGMAN_STAGES = {
 
@@ -125,13 +132,15 @@ public class HangMan {
         int indexWord = random.nextInt(words.size());
         String randomWord = words.get(indexWord).toUpperCase();
 
+        System.out.println(randomWord);
+
         return randomWord;
     }
 
-    public static boolean openLetter(String randomWord, char[] masked, char letter) {
+    public static boolean openLetter(String word, char[] masked, char letter) {
         boolean found = false;
-        for (int i = 0; i < randomWord.length(); i++) {
-            if (letter == (randomWord.charAt(i))) {
+        for (int i = 0; i < word.length(); i++) {
+            if (letter == (word.charAt(i))) {
                 masked[i] = letter;
                 found = true;
             }
@@ -139,14 +148,14 @@ public class HangMan {
         return found;
     }
 
-    public static int processError(List<Character> errors, char letter, int attemptCount, int[] stageIndex) {
+    public static int processError(List<Character> errors, char letter, int attemptCount, int[] stageIndexes) {
         errors.add(letter);
         attemptCount--;
 
-        System.out.println(HANGMAN_STAGES[stageIndex[0]]);
+        System.out.println(HANGMAN_STAGES[stageIndexes[0]]);
 
         System.out.println("Неверно! Ошибки: " + errors);
-        stageIndex[0]++;
+        stageIndexes[0]++;
 
         return attemptCount;
     }
