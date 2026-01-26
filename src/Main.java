@@ -10,9 +10,7 @@ void main() {
 
             int attemptCount = HANGMAN_STAGES.length;
 
-            System.out.println("-----------------------------------");
-            System.out.printf("Игра ВИСЕЛИЦА \nPush [%s]ew game or [%s]xit \n", START, QUIT);
-            System.out.println("-----------------------------------");
+            printGreeting();
 
             String command;
             do {
@@ -26,6 +24,7 @@ void main() {
             } while (!command.equals(START));
 
             String randomWord = getRandomWord(words);
+
             char[] masked = "*".repeat(randomWord.length()).toCharArray();
             System.out.printf("Загаданное слово: %s \n", String.valueOf(masked));
 
@@ -53,15 +52,14 @@ void main() {
 
                 boolean found = openLetter(randomWord, masked, letter);
 
-                System.out.printf("Текущее слово: %s \n", String.valueOf(masked));
+                currentWord(masked);
 
                 if (!found) {
 
                     attemptCount = processError(errors, letter, attemptCount);
+
                     render(stageIndex);
                     ++stageIndex;
-
-                    System.out.printf("Текущее слово: %s \n", String.valueOf(masked));
 
                     if (attemptCount == 0)
                         break;
@@ -71,7 +69,7 @@ void main() {
                 } else {
 
                     System.out.printf("Верно! У вас осталось попыток %s \n", attemptCount );
-                    System.out.println("ошибки: " + errors);
+                    System.out.printf("ошибки: %s \n", errors);
                 }
             }
 
@@ -91,5 +89,4 @@ void main() {
             return;
         }
     }
-
 }

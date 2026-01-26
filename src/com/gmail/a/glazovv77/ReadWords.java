@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ReadWords {
     public static List<String> readWords()  {
-        String inputFile = "words.txt";
+        String inputFile = "C:\\Users\\aglaz\\ProjectsIdea\\HangMan\\words.txt";
 
         List<String> words = new ArrayList<>();
 
@@ -26,11 +26,13 @@ public class ReadWords {
                 }
             }
             System.out.println(wordCount + " слов");
+
         } catch (IOException e) {
-            System.err.println("Ошибка чтения файла: " + e.getMessage());
+            throw new IllegalArgumentException ("Файл не найден, работа программы будет прекращена");
         }
+
         if (words.isEmpty()) {
-            System.out.println("Файл не содержит слов.");
+            throw new IllegalStateException("Файл не содержит слов, работа программы будет прекращена");
         }
         return words;
     }

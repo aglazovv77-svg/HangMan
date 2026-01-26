@@ -16,8 +16,14 @@ public class HangMan {
     public static final String REGEX = "[А-Яа-яЁё]";
     public static final Pattern PATTERN = Pattern.compile(REGEX);
 
-    private static String word;
-    private static char[] masked;
+//    private static String word;
+//    private static char[] masked;
+
+    public static void printGreeting() {
+        System.out.println("-----------------------------------");
+        System.out.printf("Игра ВИСЕЛИЦА \nPush [%s]ew game or [%s]xit \n", START, QUIT);
+        System.out.println("-----------------------------------");
+    }
 
     public static String getRandomWord(List<String> words) {
         Random random = new Random();
@@ -38,6 +44,10 @@ public class HangMan {
             }
         }
         return found;
+    }
+
+    public static void currentWord(char[] masked) {
+        System.out.printf("Текущее слово: %s \n", String.valueOf(masked));
     }
 
     public static int processError(List<Character> errors, char letter, int attemptCount) {
