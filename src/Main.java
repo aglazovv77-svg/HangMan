@@ -1,6 +1,5 @@
 import static com.gmail.a.glazovv77.HangMan.*;
-import static com.gmail.a.glazovv77.Renderer.HANGMAN_STAGES;
-import static com.gmail.a.glazovv77.Renderer.render;
+import static com.gmail.a.glazovv77.Renderer.*;
 
 void main() {
     List<String> words = readWords();

@@ -1,7 +1,5 @@
 package com.gmail.a.glazovv77;
 
-import static com.gmail.a.glazovv77.Renderer.render;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
