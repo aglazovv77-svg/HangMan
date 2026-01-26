@@ -1,4 +1,5 @@
 import static com.gmail.a.glazovv77.HangMan.*;
+import static com.gmail.a.glazovv77.ReadWords.readWords;
 import static com.gmail.a.glazovv77.Renderer.*;
 
 void main() {
