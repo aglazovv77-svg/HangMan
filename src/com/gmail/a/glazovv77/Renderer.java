@@ -88,6 +88,7 @@ public class Renderer {
     public static void render(int stageIndex) {
 
         System.out.println(HANGMAN_STAGES[stageIndex]);
+
     }
 
 

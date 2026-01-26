@@ -67,14 +67,11 @@ public class HangMan {
         return found;
     }
 
-    public static int processError(List<Character> errors, char letter, int attemptCount, int stageIndex) {
+    public static int processError(List<Character> errors, char letter, int attemptCount) {
         errors.add(letter);
         attemptCount--;
 
-        render(stageIndex);
-
         System.out.println("Неверно! Ошибки: " + errors);
-        ++stageIndex;
 
         return attemptCount;
     }
