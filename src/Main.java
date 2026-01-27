@@ -80,7 +80,7 @@ void main() {
                 System.out.println("-----------------------------------");
                 System.out.printf("Вы проиграли, загаданное слово: %s \n", randomWord);
             }
-            System.out.printf("Хотите сыграть еще? \nНажмите [%s], либо любую другую букву для выхода.", REPEAT);
+            System.out.printf("Хотите сыграть еще? \nНажмите [%s], либо любую другую букву для выхода. \n", REPEAT);
             String answer = sc.nextLine().toUpperCase();
             if (answer.equals("Y")) {
                 continue;

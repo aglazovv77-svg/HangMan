@@ -5,24 +5,6 @@ public class Renderer {
     public static final String[] HANGMAN_STAGES = {
 
             """
-
-
-
-
-
-					=========
-					""",
-
-            """
-					   |
-					   |
-					   |
-					   |
-					   |
-					=========
-					""",
-
-            """
 					   +---+
 					   |   |
 					   |
