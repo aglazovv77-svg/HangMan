@@ -14,7 +14,6 @@ public class ReadWords {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile))) {
             String line;
-            int wordCount = 0;
             while ((line = reader.readLine()) != null) {
                 String[] lineWords = line.split("\\s+");
                 for (String word : lineWords) {
@@ -22,15 +21,11 @@ public class ReadWords {
                         continue;
                     }
                     words.add(word);
-                    wordCount++;
                 }
             }
-            System.out.println(wordCount + " слов");
-
         } catch (IOException e) {
             throw new IllegalArgumentException ("Файл не найден, работа программы будет прекращена");
         }
-
         if (words.isEmpty()) {
             throw new IllegalStateException("Файл не содержит слов, работа программы будет прекращена");
         }
