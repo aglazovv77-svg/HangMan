@@ -1,10 +1,8 @@
 package com.gmail.a.glazovv77;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class HangMan {
