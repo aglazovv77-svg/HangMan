@@ -34,16 +34,17 @@ void main() {
             return;
         }
         start();
-label:
-        while (true) {
+
+       while (true) {
             System.out.printf("Хотите сыграть еще? \nНажмите [%s], либо любую другую букву для выхода. \n", REPEAT);
             String answer = scanner.nextLine().toUpperCase();
+
             if (answer.equals("Y")) {
-                break label;
+                break;
             }
             System.out.println("Игра закончена!");
             return;
-        }
+       }
     }
 }
 
@@ -121,7 +122,7 @@ private static void start() {
 
         if (!masked.contains(String.valueOf(letter))) {
 
-            processError(errors, letter);
+            errors.add(letter);
             System.out.println("Неверно! Ошибки: " + errors);
 
             --attemptCount;
@@ -135,7 +136,6 @@ private static void start() {
             System.out.printf("У вас осталось попыток %s \n", attemptCount);
 
         } else {
-
             System.out.printf("Верно! У вас осталось попыток %s \n", attemptCount);
             System.out.printf("ошибки: %s \n", errors);
         }
@@ -167,11 +167,6 @@ private static void currentWord(String masked) {
     System.out.printf("Текущее слово: %s \n", masked);
 }
 
-private static List<Character> processError(List<Character> errors, char letter) {
-    errors.add(letter);
-
-    return errors;
-}
 private static int attemptCount(int attemptCount) {
     return attemptCount;
 }
