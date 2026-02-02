@@ -136,6 +136,8 @@ public class Main {
                 System.out.printf("Верно! У вас осталось попыток %s \n", attemptCount);
                 System.out.printf("ошибки: %s \n", errorLeters);
             }
+            System.out.println(word);
+            System.out.println(mask);
 
             if (isWon()) {
                 System.out.println("-----------------------------------");
@@ -203,12 +205,12 @@ public class Main {
     }
 
     private static boolean isWon() {
-        String s = String.valueOf(MASK_SYMBOL);
-        return !mask.contains(s);
+        System.out.println("!!!");
+        return word.equals(mask);
     }
 
     private static String getMaskWord(String word) {
-
-        return mask = "*".repeat(word.length());
+        String s = String.valueOf(MASK_SYMBOL);
+        return mask = s.repeat(word.length());
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ReadWords {
     public static List<String> readWords()  {
-        String inputFile = "C:\\Users\\aglaz\\ProjectsIdea\\HangMan\\words.txt";
+        String inputFile = "words.txt";
 
         List<String> words = new ArrayList<>();
 
