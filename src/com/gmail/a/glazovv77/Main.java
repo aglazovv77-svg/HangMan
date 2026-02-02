@@ -1,3 +1,5 @@
+package com.gmail.a.glazovv77;
+
 import static com.gmail.a.glazovv77.ReadWords.readWords;
 import static com.gmail.a.glazovv77.Renderer.*;
 
@@ -8,21 +10,23 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-private final static String START = "N";
-private final static String QUIT = "E";
-private final static String REPEAT = "Y";
+public class Main {
 
-private static final String REGEX = "[А-Яа-яЁё]";
-private static final Pattern PATTERN = Pattern.compile(REGEX);
+    private final static String START = "N";
+    private final static String QUIT = "E";
+    private final static String REPEAT = "Y";
 
-private static Scanner scanner = new Scanner(System.in);
+    private static final String REGEX = "[А-Яа-яЁё]";
+    private static final Pattern PATTERN = Pattern.compile(REGEX);
 
-private static final char MASK_SYMBOL = '*';
+    private static final Scanner scanner = new Scanner(System.in);
 
-private static String word = getRandomWord(readWords());
-private static String masked = maskedWord(word);
+    private static final char MASK_SYMBOL = '*';
 
-void main() {
+    private static final String word = getRandomWord(readWords());
+    private static String masked = maskedWord(word);
+
+    public static void main(String[] args) {
 
     while (true) {
 
@@ -187,6 +191,7 @@ private static boolean isWon() {
 }
 
 private static String maskedWord(String word) {
+
     return masked = "*".repeat(word.length());
 }
-
+}
