@@ -86,65 +86,65 @@ private static void start() {
 
     List<String> words = readWords();
 
-        int attemptCount = HANGMAN_STAGES.length;
+    int attemptCount = HANGMAN_STAGES.length;
 
-        String randomWord = getRandomWord(words);
+    String randomWord = getRandomWord(words);
 
-        String masked = maskedWord(randomWord);
-        System.out.printf("Загаданное слово: %s \n", masked);
+    String masked = maskedWord(randomWord);
+    System.out.printf("Загаданное слово: %s \n", masked);
 
-        System.out.printf("У вас %d попыток отгадать слово \n", attemptCount);
+    System.out.printf("У вас %d попыток отгадать слово \n", attemptCount);
 
-        List<Character> errors = new ArrayList<>();
-        int stageIndex = 0;
+    List<Character> errors = new ArrayList<>();
+    int stageIndex = 0;
 
-        while (!isGameOver()) {
-            System.out.println("Введите букву: ");
-            String input = scanner.nextLine().toUpperCase();
+    while (!isGameOver()) {
+        System.out.println("Введите букву: ");
+        String input = scanner.nextLine().toUpperCase();
 
-            Matcher matcher = PATTERN.matcher(input);
-            if (!matcher.matches()) {
-                System.out.println("Введите ОДНУ РУССКУЮ букву");
-                continue;
-            }
+        Matcher matcher = PATTERN.matcher(input);
+        if (!matcher.matches()) {
+            System.out.println("Введите ОДНУ РУССКУЮ букву");
+            continue;
+        }
 
-            char letter = input.charAt(0);
+        char letter = input.charAt(0);
 
-            if (errors.contains(letter) || masked.indexOf(letter) >= 0) {
-                System.out.println("Вы уже вводили эту букву");
-                continue;
-            }
+        if (errors.contains(letter) || masked.indexOf(letter) >= 0) {
+            System.out.println("Вы уже вводили эту букву");
+            continue;
+        }
 
-            masked = openLetter(randomWord, masked, letter);
+        masked = openLetter(randomWord, masked, letter);
 
-            currentWord(masked);
+        currentWord(masked);
 
-            if (!masked.contains(String.valueOf(letter))) {
+        if (!masked.contains(String.valueOf(letter))) {
 
-                attemptCount = processError(errors, letter, attemptCount);
+            attemptCount = processError(errors, letter, attemptCount);
 
-                render(stageIndex);
-                ++stageIndex;
+            render(stageIndex);
+            ++stageIndex;
 
-                if (attemptCount == 0)
-                    break;
+            if (attemptCount == 0)
+                break;
 
-                System.out.printf("У вас осталось попыток %s \n", attemptCount);
+            System.out.printf("У вас осталось попыток %s \n", attemptCount);
 
-            } else {
+        } else {
 
-                System.out.printf("Верно! У вас осталось попыток %s \n", attemptCount);
-                System.out.printf("ошибки: %s \n", errors);
-            }
+            System.out.printf("Верно! У вас осталось попыток %s \n", attemptCount);
+            System.out.printf("ошибки: %s \n", errors);
         }
 
         if (isWon()) {
             System.out.println("-----------------------------------");
             System.out.printf("Поздравляем! Вы выиграли, загаданное слово: %s \n", randomWord);
-        } else {
+        } else if (isLose()) {
             System.out.println("-----------------------------------");
             System.out.printf("Вы проиграли, загаданное слово: %s \n", randomWord);
         }
+    }
 }
 
 private static String openLetter(String word, String masked, char letter) {
