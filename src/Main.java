@@ -121,7 +121,10 @@ private static void start() {
 
         if (!masked.contains(String.valueOf(letter))) {
 
-            attemptCount = processError(errors, letter, attemptCount);
+            processError(errors, letter);
+            System.out.println("Неверно! Ошибки: " + errors);
+
+            --attemptCount;
 
             render(stageIndex);
             ++stageIndex;
@@ -140,7 +143,8 @@ private static void start() {
         if (isWon()) {
             System.out.println("-----------------------------------");
             System.out.printf("Поздравляем! Вы выиграли, загаданное слово: %s \n", randomWord);
-        } else if (isLose()) {
+        }
+        else if (isLose()) {
             System.out.println("-----------------------------------");
             System.out.printf("Вы проиграли, загаданное слово: %s \n", randomWord);
         }
@@ -163,12 +167,12 @@ private static void currentWord(String masked) {
     System.out.printf("Текущее слово: %s \n", masked);
 }
 
-private static int processError(List<Character> errors, char letter, int attemptCount) {
+private static List<Character> processError(List<Character> errors, char letter) {
     errors.add(letter);
-    attemptCount--;
 
-    System.out.println("Неверно! Ошибки: " + errors);
-
+    return errors;
+}
+private static int attemptCount(int attemptCount) {
     return attemptCount;
 }
 
@@ -177,7 +181,7 @@ private static boolean isGameOver() {
 }
 
 private static boolean isLose() {
-    if(HANGMAN_STAGES.length != 0) {
+    if(attemptCount(HANGMAN_STAGES.length) != 0) {
         return false;
     }
     return masked.contains(String.valueOf(MASK_SYMBOL));
