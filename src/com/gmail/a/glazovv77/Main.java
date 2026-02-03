@@ -14,20 +14,18 @@ public class Main {
 
     private final static String START = "N";
     private final static String QUIT = "E";
+    private static final char MASK_SYMBOL = '*';
 
     private static final String REGEX = "[А-Яа-яЁё]";
     private static final Pattern PATTERN = Pattern.compile(REGEX);
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    private static final char MASK_SYMBOL = '*';
-
     private static String word = "";
     private static String mask = "";
-
     private static List<Character> errorLeters = new ArrayList<>();
-    private static int attemptCount = HANGMAN_STAGES.length;
 
+    private static int attemptCount = 0;
 
     public static void main(String[] args) {
 
@@ -83,11 +81,12 @@ public class Main {
 
         List<String> words = readWords();
 
-        word = getRandomWord(words);
+        word =  getRandomWord(words);
         mask = getMaskWord(word);
 
         System.out.printf("Загаданное слово: %s \n", mask);
-        System.out.printf("У вас %d попыток отгадать слово \n", attemptCount);
+        attemptCount = HANGMAN_STAGES.length;
+        System.out.printf("У вас попыток отгадать слово %d \n", attemptCount);
 
         int stageIndex = 0;
 
@@ -106,7 +105,7 @@ public class Main {
 
             if (!isWordLetter(letter)) {
 
-                errorLeters.add(letter);
+                errorLeters = errorLeters(letter);
                 attemptCount--;
                 stageIndex++;
 
@@ -153,13 +152,17 @@ public class Main {
         return word.contains(String.valueOf(letter));
     }
 
+    private static List<Character> errorLeters(char letter) {
+        List<Character> errorLeters = new ArrayList<>();
+        errorLeters.add(letter);
+        return errorLeters;
+    }
 
     private static String openLetter(String word, String mask, char letter) {
         char[] maskArray = mask.toCharArray();
         for (int i = 0; i < word.length(); i++) {
             if (letter == (word.charAt(i))) {
                 maskArray[i] = letter;
-
             }
         }
         mask = String.valueOf(maskArray);
