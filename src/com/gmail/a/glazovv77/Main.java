@@ -14,7 +14,6 @@ public class Main {
 
     private final static String START = "N";
     private final static String QUIT = "E";
-    private final static String REPEAT = "Y";
 
     private static final String REGEX = "[А-Яа-яЁё]";
     private static final Pattern PATTERN = Pattern.compile(REGEX);
@@ -23,10 +22,12 @@ public class Main {
 
     private static final char MASK_SYMBOL = '*';
 
-    private static String word = getRandomWord(readWords());
-    private static String mask = getMaskWord(word);
+    private static String word = "";
+    private static String mask = "";
 
     private static List<Character> errorLeters = new ArrayList<>();
+    private static int attemptCount = HANGMAN_STAGES.length;
+
 
     public static void main(String[] args) {
 
@@ -40,20 +41,8 @@ public class Main {
                 return;
             }
             start();
-
-//            if(needRepeatGame()) {
-//                start();
-//            }
         }
     }
-
-    private static boolean needRepeatGame () {
-        System.out.printf("Хотите сыграть еще? \nНажмите [%s], либо любую другую букву для выхода. \n", REPEAT);
-        String answer = scanner.nextLine().toUpperCase();
-
-        return answer.equals("Y");
-    }
-
 
     private static void printGreeting() {
         System.out.println("-----------------------------------");
@@ -94,13 +83,10 @@ public class Main {
 
         List<String> words = readWords();
 
-        int attemptCount = HANGMAN_STAGES.length;
-
         word = getRandomWord(words);
+        mask = getMaskWord(word);
 
-        String mask = getMaskWord(word);
         System.out.printf("Загаданное слово: %s \n", mask);
-
         System.out.printf("У вас %d попыток отгадать слово \n", attemptCount);
 
         int stageIndex = 0;
@@ -124,20 +110,15 @@ public class Main {
                 attemptCount--;
                 stageIndex++;
 
-//                if (attemptCount == 0) {
-//                    break;
-//                }
-
                 System.out.println("Неверно! Ошибки: " + errorLeters);
                 render(stageIndex);
+
                 System.out.printf("У вас осталось попыток %s \n", attemptCount);
 
             } else {
                 System.out.printf("Верно! У вас осталось попыток %s \n", attemptCount);
                 System.out.printf("ошибки: %s \n", errorLeters);
             }
-            System.out.println(word);
-            System.out.println(mask);
 
             if (isWon()) {
                 System.out.println("-----------------------------------");
@@ -173,24 +154,20 @@ public class Main {
     }
 
 
-    private static String openLetter(String word, String masked, char letter) {
-        char[] maskArray = masked.toCharArray();
+    private static String openLetter(String word, String mask, char letter) {
+        char[] maskArray = mask.toCharArray();
         for (int i = 0; i < word.length(); i++) {
             if (letter == (word.charAt(i))) {
                 maskArray[i] = letter;
 
             }
         }
-        masked = new String(maskArray);
-        return masked;
+        mask = String.valueOf(maskArray);
+        return mask;
     }
 
-    private static void currentWord(String masked) {
-        System.out.printf("Текущее слово: %s \n", masked);
-    }
-
-    private static int attemptCount(int attemptCount) {
-        return attemptCount;
+    private static void currentWord(String mask) {
+        System.out.printf("Текущее слово: %s \n", mask);
     }
 
     private static boolean isGameOver() {
@@ -198,14 +175,13 @@ public class Main {
     }
 
     private static boolean isLose() {
-        if (attemptCount(HANGMAN_STAGES.length) != 0) {
+        if (attemptCount > 0) {
             return false;
         }
         return mask.contains(String.valueOf(MASK_SYMBOL));
     }
 
     private static boolean isWon() {
-        System.out.println("!!!");
         return word.equals(mask);
     }
 
