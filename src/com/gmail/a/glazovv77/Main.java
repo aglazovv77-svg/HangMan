@@ -23,7 +23,7 @@ public class Main {
 
     private static String word = "";
     private static String mask = "";
-    private static List<Character> errorLeters;//  = new ArrayList<>();
+    private static List<Character> errorLeters;
 
     private static int attemptCount = 0;
 
@@ -70,8 +70,6 @@ public class Main {
         Random random = new Random();
         int indexWord = random.nextInt(words.size());
         String randomWord = words.get(indexWord).toUpperCase();
-
-        System.out.println(randomWord);  // для отладки
 
         return randomWord;
     }
