@@ -23,7 +23,7 @@ public class Main {
 
     private static String word = "";
     private static String mask = "";
-    private static List<Character> errorLeters = new ArrayList<>();
+    private static List<Character> errorLeters;//  = new ArrayList<>();
 
     private static int attemptCount = 0;
 
@@ -80,6 +80,7 @@ public class Main {
     private static void start() {
 
         List<String> words = readWords();
+        errorLeters = new ArrayList<>();
 
         word =  getRandomWord(words);
         mask = getMaskWord(word);
@@ -153,7 +154,6 @@ public class Main {
     }
 
     private static List<Character> errorLeters(char letter) {
-        List<Character> errorLeters = new ArrayList<>();
         errorLeters.add(letter);
         return errorLeters;
     }
