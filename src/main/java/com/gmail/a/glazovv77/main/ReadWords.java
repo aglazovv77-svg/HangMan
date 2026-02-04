@@ -1,4 +1,5 @@
-package com.gmail.a.glazovv77;
+package com.gmail.a.glazovv77.main;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class ReadWords {
     public static List<String> readWords()  {
-        String inputFile = "words.txt";
+        String inputFile = "C:\\Users\\aglaz\\ProjectsIdea\\HangMan\\src\\main\\resources\\words.txt";
 
         List<String> words = new ArrayList<>();
 

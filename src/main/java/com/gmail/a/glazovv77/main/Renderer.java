@@ -1,4 +1,4 @@
-package com.gmail.a.glazovv77;
+package com.gmail.a.glazovv77.main;
 
 public class Renderer {
 
@@ -65,11 +65,12 @@ public class Renderer {
 					   |  /|\\
 					   |  / \\
 					=========
-					""" };
+					"""
+    };
 
     public static void render(int stageIndex) {
 
-        System.out.println(HANGMAN_STAGES[stageIndex-1]);
+        System.out.println(Renderer.HANGMAN_STAGES[stageIndex-1]);
 
     }
 
