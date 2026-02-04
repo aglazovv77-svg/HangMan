@@ -6,6 +6,9 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+target/
+*.class
+
 .kotlin
 
 ### Eclipse ###
