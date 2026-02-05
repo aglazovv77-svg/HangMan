@@ -1,4 +1,4 @@
-package com.gmail.a.glazovv77.main;
+package com.gmail.a.glazovv77;
 
 public class Renderer {
 

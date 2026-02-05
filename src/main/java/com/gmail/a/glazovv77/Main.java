@@ -1,7 +1,7 @@
-package com.gmail.a.glazovv77.main;
+package com.gmail.a.glazovv77;
 
-import static com.gmail.a.glazovv77.main.ReadWords.readWords;
-import static com.gmail.a.glazovv77.main.Renderer.*;
+import static com.gmail.a.glazovv77.ReadWords.readWords;
+import static com.gmail.a.glazovv77.Renderer.*;
 
 import java.util.ArrayList;
 import java.util.List;
