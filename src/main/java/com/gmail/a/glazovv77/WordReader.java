@@ -20,7 +20,7 @@ public final class WordReader {
     private WordReader() {
     }
 
-    public static List<String> read()  {
+    public static List<String> read(String filePath, String regex)  {
         List<String> words = new ArrayList<>();
 
         File inputFile = new File(FILE_PATH);

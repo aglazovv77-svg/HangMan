@@ -109,7 +109,7 @@ public class GameService {
 
     private static void initRound() {
 
-        List<String> words = read();
+        List<String> words = read("words", "[А-Яа-яЁё]+");
         errorLetters = new ArrayList<>();
 
         word =  getRandomWord(words);
