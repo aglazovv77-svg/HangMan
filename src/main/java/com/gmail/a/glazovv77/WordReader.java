@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 public final class WordReader {
 
-    private final static String FILE_PATH = String.valueOf(Path.of("src","main","resources","words.txt"));
+    private static final String FILE_PATH = String.valueOf(Path.of("src","main","resources","words.txt"));
     private static final String REGEX = "[А-Яа-яЁё]+";
     private static final Pattern PATTERN = Pattern.compile(REGEX);
 
@@ -31,7 +31,7 @@ public final class WordReader {
                 String[] lineWords = line.split("\\s+");
                 for (String word : lineWords) {
                     Matcher matcher = PATTERN.matcher(word);
-                    if (!word.matches(REGEX)) {
+                    if (!matcher.matches()) {
                         continue;
                     }
                     words.add(word);

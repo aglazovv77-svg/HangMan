@@ -2,6 +2,8 @@ package com.gmail.a.glazovv77;
 
 public class Renderer {
 
+    private Renderer() {}
+
     static final String[] HANGMAN_STAGES = {
 
             """
