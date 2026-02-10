@@ -2,7 +2,7 @@ package com.gmail.a.glazovv77;
 
 public class Renderer {
 
-    public static final String[] HANGMAN_STAGES = {
+    static final String[] HANGMAN_STAGES = {
 
             """
 					   +---+
