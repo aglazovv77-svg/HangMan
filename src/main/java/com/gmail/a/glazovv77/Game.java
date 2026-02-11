@@ -28,7 +28,7 @@ public class Game {
 
     private static int attemptCount = 0;
 
-    static void printGreeting() {
+    private static void printGreeting() {
         System.out.println("-----------------------------------");
         System.out.printf("Игра ВИСЕЛИЦА \nPush [%s]ew game or [%s]xit \n", START, QUIT);
         System.out.println("-----------------------------------");
@@ -39,12 +39,12 @@ public class Game {
         return command.equals(START);
     }
 
-    static boolean isQuit(String command) {
+    private static boolean isQuit(String command) {
 
         return command.equals(QUIT);
     }
 
-    static String inputCommand() {
+    private static String inputCommand() {
         while (true) {
             String command = scanner.nextLine().toUpperCase();
             if (isStart(command) || isQuit(command)) {
@@ -61,7 +61,7 @@ public class Game {
     }
 
     //игровая логика раунда
-    static void start() {
+    private static void start() {
 
         initRound();
 
