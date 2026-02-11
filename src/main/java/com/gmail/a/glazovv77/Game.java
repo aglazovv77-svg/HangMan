@@ -1,5 +1,6 @@
 package com.gmail.a.glazovv77;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -7,17 +8,17 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.gmail.a.glazovv77.Renderer.HANGMAN_STAGES;
-import static com.gmail.a.glazovv77.Renderer.render;
-import static com.gmail.a.glazovv77.WordReader.read;
-
-public class GameService {
+public class Game {
     private final static String START = "N";
     private final static String QUIT = "E";
     private static final char MASK_SYMBOL = '*';
+    private static final int MAX_ATTEMPTS = 7;
 
-    private static final String REGEX = "[А-Яа-яЁё]";
-    private static final Pattern PATTERN = Pattern.compile(REGEX);
+    private static final String FILE_PATH = String.valueOf(Path.of("src","main","resources","words.txt"));
+
+    private static final String REGEX_LETTER = "[А-Яа-яЁё]";
+    private static final String REGEX_WORD = "[А-Яа-яЁё]+";
+    private static final Pattern PATTERN = Pattern.compile(REGEX_LETTER);
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -65,7 +66,7 @@ public class GameService {
         initRound();
 
         System.out.println("Загаданное слово: " + mask);
-        attemptCount = HANGMAN_STAGES.length;
+        attemptCount = MAX_ATTEMPTS;
         System.out.println("У вас попыток отгадать слово " + attemptCount);
 
         int stageIndex = 0;
@@ -87,10 +88,10 @@ public class GameService {
 
                 errorLetters = addErrorLetter(letter);
                 attemptCount--;
-                stageIndex++;
 
                 System.out.printf("Неверно! Ошибки: %s \n У вас осталось попыток: %d \n ", errorLetters, attemptCount);
-                render(stageIndex);
+                Renderer.render(stageIndex);
+                stageIndex++;
 
             } else {
                 System.out.println("Верно! У вас осталось попыток " + attemptCount);
@@ -109,9 +110,8 @@ public class GameService {
 
     private static void initRound() {
 
-        List<String> words = read("words", "[А-Яа-яЁё]+");
+        List<String> words = WordReader.read(FILE_PATH, REGEX_WORD);
         errorLetters = new ArrayList<>();
-
         word =  getRandomWord(words);
         mask = getMaskWord(word);
 

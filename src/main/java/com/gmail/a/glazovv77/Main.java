@@ -1,6 +1,6 @@
 package com.gmail.a.glazovv77;
 
-import static com.gmail.a.glazovv77.GameService.*;
+import static com.gmail.a.glazovv77.Game.*;
 
 public class Main {
 

@@ -2,9 +2,7 @@ package com.gmail.a.glazovv77;
 
 public class Renderer {
 
-    private Renderer() {}
-
-    static final String[] HANGMAN_STAGES = {
+    private static final String[] HANGMAN_STAGES = {
 
             """
 					   +---+
@@ -70,9 +68,11 @@ public class Renderer {
 					"""
     };
 
+    private Renderer() {}
+
     public static void render(int stageIndex) {
 
-        System.out.println(Renderer.HANGMAN_STAGES[stageIndex-1]);
+        System.out.println(Renderer.HANGMAN_STAGES[stageIndex]);
 
     }
 
